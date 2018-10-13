@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+    <link rel="stylesheet" href="{% static 'css/style_test.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
+</head>
+<body>
+<form action="{% url 'add:user_message' %}" id="jsStayForm" method="post" class="smart-green">
+    <h1>留言信息
+        <span>请留下你的信息.</span>
+    </h1>
+    {% csrf_token %}
+    <label>
+        <span>姓名 :</span>
+        <input id="name" type="text" name="name" class="error" placeholder="请输入您的姓名"/>
+        <div class="error-msg"></div>
+    </label>
+
+    <label>
+        <span>邮箱 :</span>
+        <input id="email" type="email" value="" name="email" placeholder="请输入邮箱地址"/>
+        <div class="error-msg"></div>
+    </label>
+
+    <label>
+        <span>联系地址 :</span>
+        <input id="address" type="text" value="" name="address" placeholder="请输入联系地址"/>
+        <div class="error-msg"></div>
+    </label>
+
+    <label>
+        <span>留言 :</span>
+        <textarea id="message" name="comment"  placeholder="请输入你的建议"></textarea>
+        <div class="error-msg"></div>
+    </label>
+    <div class="success-msg"></div>
+    <label>
+        <span>&nbsp;</span>
+        <input class="button" onclick="TipFuction()" value="提交"/>
+    </label>
+</form>
+
+<script>
+    function TipFuction() {
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "{% url 'add:user_message' %}",
+            data: $('#jsStayForm').serialize(),
+            async: true,
+            success: function (data) {
+                if (data.status == 'success') {
+                    alert("提交成功")
+                    location.reload()
+                } else if (data.status == 'fail') {
+                    alert(data.msg)
+                    location.reload()
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>
