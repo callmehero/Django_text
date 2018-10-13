@@ -10,8 +10,8 @@ def send_tip_mail(user_name, user_email, user_message):
     他的联系邮箱是：{0}, 
     内容是：{1}
     """.format(user_email, user_message)
-    # 管理员用户邮箱
-    email = '506141737@qq.com'
+    # 管理员用户邮箱，这个邮箱将接收提示邮件
+    email = ''  
     send_statue = send_mail(email_title, email_body, EMAIL_FROM, [email])  # 进源码以看就知道为什么要这样写
     try:
         if send_statue:
