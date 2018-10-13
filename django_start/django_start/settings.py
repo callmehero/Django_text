@@ -129,9 +129,9 @@ STATICFILES_DIRS = [
 ]
 
 # 邮箱相关配置
-EMAIL_HOST = 'smtp.sina.cn'
+EMAIL_HOST = 'smtp.sina.cn' # 这里使用的是新浪的smtp服务，有特殊需要可自行定制
 EMAIL_PORT = 25
-EMAIL_HOST_USER = '15626165161@sina.cn'
-EMAIL_HOST_PASSWORD = 'lizhenyong1997'
+EMAIL_HOST_USER = '' # 填写你的email地址
+EMAIL_HOST_PASSWORD = '' # 填写密码
 EMAIL_FROM = EMAIL_HOST_USER
 EMAIL_USE_LTS = False
